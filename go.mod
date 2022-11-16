@@ -4,15 +4,15 @@ go 1.19
 
 require (
 	github.com/go-logr/logr v1.2.3
-	github.com/onsi/ginkgo/v2 v2.1.4
-	github.com/onsi/gomega v1.20.0
+	github.com/onsi/ginkgo/v2 v2.1.6
+	github.com/onsi/gomega v1.20.1
 	github.com/weaveworks-liquidmetal/flintlock/api v0.0.0-20221108110312-4cf137879fb2
 	github.com/weaveworks-liquidmetal/flintlock/client v0.0.0-20221108110312-4cf137879fb2
 	github.com/yitsushi/macpot v1.0.2
 	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/yaml.v2 v2.4.0
-	k8s.io/apimachinery v0.25.0
+	k8s.io/apimachinery v0.25.4
 	k8s.io/client-go v0.25.0
 	k8s.io/utils v0.0.0-20220728103510-ee6ede2d64ed
 	sigs.k8s.io/cluster-api v1.2.5
