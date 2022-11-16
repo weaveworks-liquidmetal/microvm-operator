@@ -23,6 +23,7 @@ import (
 	"time"
 
 	flclient "github.com/weaveworks-liquidmetal/controller-pkg/client"
+	flservice "github.com/weaveworks-liquidmetal/controller-pkg/services/microvm"
 	flintlocktypes "github.com/weaveworks-liquidmetal/flintlock/api/types"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -34,7 +35,6 @@ import (
 
 	infrav1 "github.com/weaveworks-liquidmetal/microvm-operator/api/v1alpha1"
 	"github.com/weaveworks-liquidmetal/microvm-operator/internal/scope"
-	"github.com/weaveworks-liquidmetal/microvm-operator/internal/services/flintlock"
 )
 
 const (
@@ -106,7 +106,7 @@ func (r *MicrovmReconciler) reconcileDelete(
 
 		return ctrl.Result{}, nil
 	}
-	defer mvmSvc.Dispose()
+	defer mvmSvc.Close()
 
 	microvm, err := mvmSvc.Get(ctx)
 	if err != nil && !strings.Contains(err.Error(), "not found") {
@@ -156,7 +156,7 @@ func (r *MicrovmReconciler) reconcileNormal(
 
 		return ctrl.Result{}, err
 	}
-	defer mvmSvc.Dispose()
+	defer mvmSvc.Close()
 
 	var microvm *flintlocktypes.MicroVM
 
@@ -202,7 +202,7 @@ func (r *MicrovmReconciler) reconcileNormal(
 
 func (r *MicrovmReconciler) getMicrovmService(
 	mvmScope *scope.MicrovmScope,
-) (*flintlock.Service, error) {
+) (*flservice.Service, error) {
 	if r.MvmClientFunc == nil {
 		return nil, errClientFactoryFuncRequired
 	}
@@ -228,7 +228,7 @@ func (r *MicrovmReconciler) getMicrovmService(
 		return nil, fmt.Errorf("creating microvm client: %w", err)
 	}
 
-	return flintlock.New(mvmScope, client, mvmScope.MicroVM.Spec.Host.Endpoint), nil
+	return flservice.New(mvmScope, client, mvmScope.MicroVM.Spec.Host.Endpoint), nil
 }
 
 func (r *MicrovmReconciler) parseMicroVMState(

@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	flclient "github.com/weaveworks-liquidmetal/controller-pkg/client"
+	microvm "github.com/weaveworks-liquidmetal/controller-pkg/types/microvm"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
@@ -94,6 +95,22 @@ func (m *MicrovmScope) GetInstanceID() string {
 	return parsed.ID()
 }
 
+func (m *MicrovmScope) MicroVMSpec() microvm.VMSpec {
+	return m.MicroVM.Spec.VMSpec
+}
+
+func (m *MicrovmScope) InstanceID() string {
+	return m.GetInstanceID()
+}
+
+func (m *MicrovmScope) UserData() string {
+	return m.GetAdditionalUserData()
+}
+
+func (m *MicrovmScope) SSHKeys() []microvm.SSHPublicKey {
+	return m.GetSSHPublicKeys()
+}
+
 // SetProviderID saves the unique microvm and object ID to the Mvm spec.
 func (m *MicrovmScope) SetProviderID(mvmUID string) {
 	providerID := fmt.Sprintf("%s%s/%s", ProviderPrefix, m.MicroVM.Spec.Host.Endpoint, mvmUID)
@@ -111,7 +128,7 @@ func (m *MicrovmScope) GetProviderID() string {
 }
 
 // GetSSHPublicKeys will return the SSH public keys for this vm.
-func (m *MicrovmScope) GetSSHPublicKeys() []infrav1.SSHPublicKey {
+func (m *MicrovmScope) GetSSHPublicKeys() []microvm.SSHPublicKey {
 	if len(m.MicroVM.Spec.SSHPublicKeys) != 0 {
 		return m.MicroVM.Spec.SSHPublicKeys
 	}
