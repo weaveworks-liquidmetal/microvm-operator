@@ -17,7 +17,7 @@ require (
 	k8s.io/apimachinery v0.25.0
 	k8s.io/client-go v0.25.0
 	k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2
-	sigs.k8s.io/cluster-api v1.2.5
+	sigs.k8s.io/cluster-api v1.2.6
 	sigs.k8s.io/controller-runtime v0.13.0
 )
 
@@ -56,6 +56,7 @@ require (
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/kr/pretty v0.3.0 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
