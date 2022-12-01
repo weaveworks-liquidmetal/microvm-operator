@@ -4,8 +4,7 @@ go 1.19
 
 require (
 	github.com/go-logr/logr v1.2.3
-	github.com/onsi/ginkgo/v2 v2.1.4
-	github.com/onsi/gomega v1.20.0
+	github.com/onsi/gomega v1.20.1
 	github.com/weaveworks-liquidmetal/controller-pkg/client v0.0.0-20221118161315-83de77687232
 	github.com/weaveworks-liquidmetal/controller-pkg/services/microvm v0.0.0-20221118161315-83de77687232
 	github.com/weaveworks-liquidmetal/controller-pkg/types/microvm v0.0.0-20221118161315-83de77687232
@@ -14,8 +13,8 @@ require (
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/yaml.v2 v2.4.0
-	k8s.io/api v0.25.0
-	k8s.io/apimachinery v0.25.0
+	k8s.io/api v0.25.4
+	k8s.io/apimachinery v0.25.4
 	k8s.io/client-go v0.25.0
 	k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2
 	sigs.k8s.io/cluster-api v1.2.5
